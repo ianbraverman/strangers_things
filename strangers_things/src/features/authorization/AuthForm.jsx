@@ -22,7 +22,7 @@ export default function AuthForm() {
   const attemptAuth = async (evt) => {
     evt.preventDefault();
     const authMethod = isLogin ? login : register;
-    const credentials = { userName, password };
+    const credentials = { username, password };
 
     try {
       await authMethod(credentials).unwrap();
@@ -59,8 +59,8 @@ export default function AuthForm() {
       <a onClick={() => setIsLogin(!isLogin)}>{altCopy}</a>
 
       {(loginLoading || registerLoading) && <p>Please wait...</p>}
-      {loginError && <p role="alert">{loginError}</p>}
-      {registerError && <p role="alert">{registerError}</p>}
+      {loginError && <p role="alert">{loginError.error.message}</p>}
+      {registerError && <p role="alert">{registerError.error.message}</p>}
     </>
   );
 }

@@ -1,21 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
-// IMPORT THE API
+import api from "../../store/api";
 
 const authApi = api.injectEndpoints({
   endpoints: (builder) => ({
     register: builder.mutation({
-      query: (credentials) => ({
+      query: (user) => ({
         url: "/users/register",
         method: "POST",
-        body: credentials,
+        body: { user },
       }),
       transformErrorResponse: (response) => response.data,
     }),
     login: builder.mutation({
-      query: (credentials) => ({
+      query: (user) => ({
         url: "/users/login",
         method: "POST",
-        body: credentials,
+        body: { user },
       }),
       transformErrorResponse: (response) => response.data,
     }),
